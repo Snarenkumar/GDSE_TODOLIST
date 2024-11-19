@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index.css' %}?v={{ timestamp }}">
+
+    <title>TO-DO LIST</title>
+</head>
+
+<body>
+    <section class="container">
+        {% block content %}
+        <div class="heading">
+            <img class="heading__img" src="../static/1.png" alt="To-Do List Icon">
+            <h1 class="heading__title">To-Do List</h1>
+        </div>
+        <form class="form" autocomplete="off">
+            <div>
+                <label class="form__label" for="task">~ Enter the Task I need to ~</label>
+                <input class="form__input" type="text" id="task" name="task" size="30" required>
+
+                <label class="form__label" for="time">~ Time allocated for the Task (in minutes) ~</label>
+                <input class="form__input" type="number" id="time" name="time" size="30" required>
+
+                <br>
+                    <input type="submit" value="Submit" class="button">
+                
+            </div>
+        </form>
+        <div>
+            <ul class="toDoList"></ul>
+        </div>
+        {% endblock %}
+    </section>
+    
+</body>
+
+<script>
+(() => {
+    // State variable to store tasks
+    let toDoListArray = [];
+
+    // Select elements
+    const form = document.querySelector(".form");
+    const taskInput = document.getElementById("task"); // Text input for task
+    const timeInput = document.getElementById("time"); // Number input for time
+    const ul = document.querySelector(".toDoList"); // List where tasks will be displayed
+
+    // Debugging alert to check JavaScript execution
+    alert("JavaScript is running!");
+
+    // Event listener for form submission
+    form.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent page reload
+
+        // Get values from inputs
+        const task = taskInput.value.trim(); // Task description
+        const time = parseInt(timeInput.value.trim(), 10); // Time in minutes
+
+        // Validate inputs
+        if (!task || isNaN(time) || time <= 0) {
+            alert("Please enter a valid task and a positive time value.");
+            return;
+        }
+
+        // Create a unique ID for the task
+        const itemId = String(Date.now());
+
+        // Add task and time to the array
+        const toDoItem = { itemId, task, time };
+        toDoListArray.push(toDoItem);
+
+        // Log the array to verify
+        console.log(toDoListArray);
+
+        // Add the task and time to the DOM
+        addItemToDOM(toDoItem);
+
+        // Clear inputs after submission
+        taskInput.value = "";
+        timeInput.value = "";
+    });
+
+    // Function to add task and time to DOM
+    function addItemToDOM({ task, time }) {
+        const li = document.createElement("li");
+        li.textContent = `${task} - ${time} minutes`; // Display format
+        ul.appendChild(li);
+    }
+})();
+</script>
+
+</html>

@@ -1,0 +1,15 @@
+
+
+{
+    "builds": [{
+        "src": "GDSE_TODOLIST/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "3.12.4" }
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "GDSE_TODOLIST/wsgi.py"
+        }
+    ]
+}
