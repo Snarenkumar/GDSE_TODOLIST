@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../static/index.css">
+    <title>TO-DO LIST </title>
 </head>
+
 <body>
-    vanakam da mapla
+    <section class="container">
+        {% block content %}
+        <div class="heading">
+            <img class="heading__img" src="../static/1.png">
+            <h1 class="heading__title">To-Do List</h1>
+        </div>
+        <form action="product" class="form"  autocomplete="off"  >
+            <div>
+                <label class="form__label" for="todo">~ Today I need to ~</label>
+                
+                <input class="form__input" type="text" id="todo" name="to-do" size="30" required>
+                <span>
+
+                    <input type="submit" value="Submit" class="button">
+                </span>
+                
+            </div>
+        </form>
+        <div>
+            <ul class="toDoList">
+            </ul>
+        </div>
+        {% endblock  %}
+    </section>
+    <!-- <script src="../static/index.js"></script> -->
 </body>
+
 </html>
