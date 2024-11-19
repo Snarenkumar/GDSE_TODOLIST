@@ -18,9 +18,13 @@
         </div>
         <form action="product" class="form"  autocomplete="off"  >
             <div>
-                <label class="form__label" for="todo">~ Today I need to ~</label>
+                <label class="form__label" for="todo">~ Enter the Task I need to ~</label>
                 
-                <input class="form__input" type="text" id="todo" name="to-do" size="30" required>
+                <input class="form__input" type="text" id="task" name="task" size="30" required>
+
+                <label class="form__label" for="todo">~ Time allocated  for a Task ~</label>
+                
+                <input class="form__input" type="text" id="time" name="time" size="30" required>
                 <span>
 
                     <input type="submit" value="Submit" class="button">
@@ -34,7 +38,7 @@
         </div>
         {% endblock  %}
     </section>
-    <!-- <script src="../static/index.js"></script> -->
+    <script src="../static/index.js"></script>
 </body>
 
 </html>
