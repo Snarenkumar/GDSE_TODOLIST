@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-(*q2&@ydsh@0fr&035l_8p_#oc*ar(r%x4oah#(%2g+oh2ba^t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.versal.app']
 
 
 # Application definition
