@@ -1,4 +1,8 @@
 // // IEFE
+
+
+
+alert("hello bro");
 // (() => { 
 //     // state variables
 //     let toDoListArray = [];
@@ -62,26 +66,53 @@
     
 //   })();
 
-
 (() => {
-  // Select UI elements
-  const form = document.querySelector(".form");
-  const inputs = form.querySelectorAll(".form__input");
+  // State variable to store tasks
+  let toDoListArray = [];
 
+  // Select elements
+  const form = document.querySelector(".form");
+  const taskInput = document.getElementById("task"); // Text input for task
+  const timeInput = document.getElementById("time"); // Number input for time
+  const ul = document.querySelector(".toDoList"); // List where tasks will be displayed
+  alert(task)
+  alert(time)
   // Event listener for form submission
   form.addEventListener("submit", (e) => {
-      e.preventDefault(); // Prevent form submission
+      e.preventDefault(); // Prevent page reload
 
-      // Get values from both inputs
-      const taskDescription = inputs[0].value; // First input
-      const taskTime = inputs[1].value; // Second input
+      // Get values from inputs
+      const task = taskInput.value.trim(); // Task description
+      const time = parseInt(timeInput.value.trim(), 10); // Time in minutes
 
-      // Print values to the console or use them as needed
-      console.log("Task Description:", taskDescription);
-      console.log("Task Time:", taskTime);
+      // Validate inputs
+      if (!task || isNaN(time) || time <= 0) {
+          alert("Please enter a valid task and a positive time value.");
+          return;
+      }
 
-      // Clear input fields
-      inputs[0].value = '';
-      inputs[1].value = '';
+      // Create a unique ID for the task
+      const itemId = String(Date.now());
+
+      // Add task and time to the array
+      const toDoItem = { itemId, task, time };
+      toDoListArray.push(toDoItem);
+
+      // Log the array to verify
+      console.log(toDoListArray);
+
+      // Add the task and time to the DOM
+      addItemToDOM(toDoItem);
+
+      // Clear inputs after submission
+      taskInput.value = "";
+      timeInput.value = "";
   });
+
+  // Function to add task and time to DOM
+  function addItemToDOM({ task, time }) {
+      const li = document.createElement("li");
+      li.textContent = `${task} -----=-space ---- ${time} minutes`; // Display format
+      ul.appendChild(li);
+  }
 })();
