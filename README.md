@@ -1,4 +1,4 @@
-# 📝 Django To-Do List Project
+# 📝 Django FULLSTACK To-Do List Project with Mysql Database Link
 
 Welcome to the **Django To-Do List** project! This simple yet powerful application helps you manage your tasks and allocate time with ease.
 
